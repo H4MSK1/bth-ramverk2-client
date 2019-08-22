@@ -1,11 +1,11 @@
+const createLink = (to, name, exact = false, props = {}) => ({
+  to,
+  name,
+  exact,
+  ...props,
+});
+
 export const NavLinks = [
-  {
-    to: '/',
-    exact: true,
-    name: 'Index',
-  },
-  {
-    to: '/random',
-    name: 'Test page not found',
-  },
+  createLink('/', 'Start', true),
+  createLink('/reports/week/1', 'Kmom01', true),
 ];
