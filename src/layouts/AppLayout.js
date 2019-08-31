@@ -3,7 +3,7 @@ import Navbar from '../navigation/Navbar';
 import { DefaultContainer } from './DefaultContainer';
 
 const Header = () => (
-  <DefaultContainer>
+  <DefaultContainer noPadding>
     <Navbar />
   </DefaultContainer>
 );
@@ -15,9 +15,9 @@ const Footer = () => (
 );
 
 export const AppLayout = ({ children }) => (
-  <DefaultContainer fluid>
+  <React.Fragment>
     <Header />
     {children}
     <Footer />
-  </DefaultContainer>
+  </React.Fragment>
 );
