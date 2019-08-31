@@ -4,7 +4,7 @@ import routes from './routes';
 
 const App = () => (
   <React.Fragment>
-    <Router>{routes}</Router>
+    <Router basename={window.location.pathname}>{routes}</Router>
   </React.Fragment>
 );
 
