@@ -20,11 +20,11 @@ const Kmom01Page = () => {
         <p>
           Länk till Github repot:{' '}
           <a
-            href="https://github.com/H4MSK1/bth-ramverk2-client"
+            href={process.env.REACT_APP_GITHUB_REPOSITORY}
             target="_blank"
             rel="noopener noreferrer"
           >
-            https://github.com/H4MSK1/bth-ramverk2-client
+            {process.env.REACT_APP_GITHUB_REPOSITORY}
           </a>
         </p>
         <ReactMarkdown source={markdown} />
