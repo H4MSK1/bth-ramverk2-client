@@ -12,7 +12,7 @@ const Kmom01Page = () => {
       .then(res => res.text())
       .then(text => setMarkdown(text));
   }, [markdown, setMarkdown]);
- 
+
   return (
     <DefaultContainer>
       <Jumbotron>

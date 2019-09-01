@@ -3,7 +3,7 @@ import Navbar from '../navigation/Navbar';
 import { DefaultContainer } from './DefaultContainer';
 
 const Header = () => (
-  <DefaultContainer noPadding>
+  <DefaultContainer padding={0}>
     <Navbar />
   </DefaultContainer>
 );

@@ -1,9 +1,9 @@
 import React from 'react';
 import { Container, Row, Col } from 'reactstrap';
 
-const styles = ({ noPadding = false }) => ({
+const styles = ({ padding = false }) => ({
   style: {
-    padding: noPadding && 0,
+    padding: padding && padding,
   },
 });
 
