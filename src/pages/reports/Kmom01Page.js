@@ -11,7 +11,7 @@ const Kmom01Page = () => {
     fetch(MarkdownFile)
       .then(res => res.text())
       .then(text => setMarkdown(text));
-  }, [markdown, setMarkdown]);
+  });
 
   return (
     <DefaultContainer>
