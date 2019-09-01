@@ -6,12 +6,16 @@ const ReportPage = ({ match }) => {
   const { kmom } = match.params;
   const normalizedKmom = kmom.padStart(2, 0);
 
-  switch (normalizedKmom) {
-    case '01':
+  switch (parseInt(kmom)) {
+    case 1:
       return <Kmom01Page />;
 
     default:
-      return <PageNotFound />;
+      return (
+        <PageNotFound
+          body={`Rapport för kmom ${normalizedKmom} kunde inte hittas!`}
+        />
+      );
   }
 };
 
