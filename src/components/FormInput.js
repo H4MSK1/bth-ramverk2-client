@@ -2,6 +2,7 @@ import React from 'react';
 import { FormGroup, Label, Input, FormFeedback } from 'reactstrap';
 
 const FormInput = ({
+  children,
   name,
   label,
   type,
@@ -19,7 +20,9 @@ const FormInput = ({
       onChange={onChange}
       invalid={Boolean(error)}
       {...props}
-    />
+    >
+      {children}
+    </Input>
 
     {error && <FormFeedback>{error || 'This field is invalid.'}</FormFeedback>}
   </FormGroup>

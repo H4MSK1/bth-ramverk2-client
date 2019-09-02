@@ -30,7 +30,7 @@ const useForm = (initialValues = {}, callback, validate) => {
     }));
   };
 
-  return [values, setValues, errors, handleChange, handleSubmit];
+  return { values, setValues, errors, handleChange, handleSubmit };
 };
 
 export default useForm;

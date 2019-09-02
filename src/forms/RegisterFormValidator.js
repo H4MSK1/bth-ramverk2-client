@@ -7,12 +7,13 @@ export default function RegisterFormValidator(values) {
       name: 'required',
       email: 'required|email',
       password: 'required',
-      birthDate: 'required',
+      year: 'required',
+      month: 'required',
+      day: 'required',
     },
     {
       aliases: {
         email: 'email address',
-        birthDate: 'date of birth',
       },
     },
   );
