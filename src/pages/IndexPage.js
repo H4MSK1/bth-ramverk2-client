@@ -5,7 +5,7 @@ import { DefaultContainer } from 'layouts/DefaultContainer';
 const IndexPage = () => (
   <DefaultContainer>
     <Jumbotron className="bg-secondary box-shadow">
-      <h1>Välkommen till min me-sida</h1>
+      <h2>Välkommen till min me-sida</h2>
       <p>
         Mitt namn är Mohammad Alburhan. Född i Hudiksvall, Hälsingland men
         uppvuxen i Kristianstad, Skåne.

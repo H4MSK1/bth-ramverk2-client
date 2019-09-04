@@ -43,7 +43,12 @@ const Navbar = ({ isOpen = false }) => {
           </DropdownToggle>
           <DropdownMenu right>
             {children.map((child, index) => (
-              <DropdownItem key={index} tag={ReactRouterNavLink} to={child.to}>
+              <DropdownItem
+                key={index}
+                disabled={child.disabled}
+                tag={ReactRouterNavLink}
+                to={child.to}
+              >
                 {child.name}
               </DropdownItem>
             ))}

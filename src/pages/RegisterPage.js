@@ -19,6 +19,7 @@ const RegisterPage = () => {
   return (
     <DefaultContainer>
       <Jumbotron className="bg-secondary box-shadow">
+        <h2>Create an account</h2>
         <RegisterForm onSubmit={onSubmit} />
       </Jumbotron>
     </DefaultContainer>

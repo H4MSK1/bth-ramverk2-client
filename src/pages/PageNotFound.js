@@ -5,7 +5,7 @@ import { DefaultContainer } from 'layouts/DefaultContainer';
 const PageNotFound = ({ body }) => (
   <DefaultContainer>
     <Jumbotron className="bg-secondary box-shadow">
-      <h1 className="display-3">404 Error</h1>
+      <h2>404 Error</h2>
       {body && (
         <React.Fragment>
           <hr className="my-2" />
