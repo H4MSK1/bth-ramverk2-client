@@ -1,1 +1,11 @@
-$btn-border-radius: 0 !default;
+// Theme colors
+$body-bg: #e6e6e6;
+$primary-color: #2b3c8e;
+$secondary-color: #fff;
+
+// Misc
+$navbar-height: 56px;
+
+// Bootstrap variables override
+$primary: $primary-color !default;
+$font-family-base: "Muli", sans-serif !default;

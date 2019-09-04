@@ -1,0 +1,26 @@
+body {
+  background-color: $body-bg;
+  overflow-y: scroll;
+}
+
+.navbar-wrapper {
+  margin-bottom: $navbar-height / 2;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.main {
+  flex: 1 0 auto;
+}
+
+.footer {
+  flex-shrink: 0;
+  padding: 3.5rem 0;
+  font-size: 14px;
+  text-align: center;
+  background-color: #1d1d1d;
+}

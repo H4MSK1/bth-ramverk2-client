@@ -1,23 +1,35 @@
 import React from 'react';
-import Navbar from '../navigation/Navbar';
+import Navbar from 'navigation/Navbar';
 import { DefaultContainer } from './DefaultContainer';
 
 const Header = () => (
-  <DefaultContainer padding={0}>
+  <header className="navbar-wrapper">
     <Navbar />
-  </DefaultContainer>
+  </header>
 );
 
 const Footer = () => (
-  <DefaultContainer>
-    <footer className="footer">footer text</footer>
-  </DefaultContainer>
+  <footer className="footer text-light">
+    <DefaultContainer>
+      This site was created with React & Reactstrap.{' '}
+      <a
+        href={process.env.REACT_APP_GITHUB_REPOSITORY}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="text-light"
+      >
+        {process.env.REACT_APP_GITHUB_REPOSITORY}
+      </a>
+    </DefaultContainer>
+  </footer>
 );
 
 export const AppLayout = ({ children }) => (
-  <React.Fragment>
+  <div className="app">
     <Header />
-    {children}
+
+    <main className="main">{children}</main>
+
     <Footer />
-  </React.Fragment>
+  </div>
 );
