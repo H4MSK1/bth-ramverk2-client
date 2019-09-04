@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route as BaseRoute } from 'react-router-dom';
-import { AppLayout } from '../layouts/AppLayout';
+import { AppLayout } from 'layouts/AppLayout';
 
 export const AppRoute = ({ component: Component, ...rest }) => (
   <BaseRoute
