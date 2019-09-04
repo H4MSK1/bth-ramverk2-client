@@ -1,10 +1,10 @@
 import React from 'react';
 import { Jumbotron } from 'reactstrap';
-import { DefaultContainer } from '../layouts/DefaultContainer';
+import { DefaultContainer } from 'layouts/DefaultContainer';
 
 const PageNotFound = ({ body }) => (
   <DefaultContainer>
-    <Jumbotron>
+    <Jumbotron className="bg-secondary box-shadow">
       <h1 className="display-3">404 Error</h1>
       {body && (
         <React.Fragment>

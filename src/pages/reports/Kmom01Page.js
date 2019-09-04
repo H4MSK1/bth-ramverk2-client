@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactMarkdown from 'react-markdown';
 import { Jumbotron } from 'reactstrap';
-import { DefaultContainer } from '../../layouts/DefaultContainer';
-import MarkdownFile from '../../README.md';
+import { DefaultContainer } from 'layouts/DefaultContainer';
+import MarkdownFile from 'static/README.md';
 
 const Kmom01Page = () => {
   const [markdown, setMarkdown] = React.useState('');
@@ -15,7 +15,7 @@ const Kmom01Page = () => {
 
   return (
     <DefaultContainer>
-      <Jumbotron>
+      <Jumbotron className="bg-secondary box-shadow">
         <h1>kmom 01</h1>
         <p>
           Länk till Github repot:{' '}
