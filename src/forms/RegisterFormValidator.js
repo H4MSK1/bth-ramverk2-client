@@ -7,6 +7,7 @@ export default function RegisterFormValidator(values) {
       name: 'required',
       email: 'required|email',
       password: 'required',
+      password_confirm: 'required|same:password',
       year: 'required',
       month: 'required',
       day: 'required',
@@ -14,6 +15,7 @@ export default function RegisterFormValidator(values) {
     {
       aliases: {
         email: 'email address',
+        password_confirm: 'confirm password',
       },
     },
   );

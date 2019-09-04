@@ -1,40 +1,24 @@
 import React from 'react';
 import { Col, Row, Button, Form, Label } from 'reactstrap';
-import { generateRange, getDaysInMonthAsArray } from '../utils';
-import FormInput from '../components/FormInput';
-import useForm from '../hooks/useForm';
+import FormInput from 'components/FormInput';
+import useForm from 'hooks/useForm';
 import RegisterFormValidator from './RegisterFormValidator';
-
-const currentDate = new Date();
-const currentYear = currentDate.getFullYear();
-
-const getYears = () => {
-  return generateRange(currentYear, currentYear - 100);
-};
-
-const getMonths = () => ({
-  1: 'January',
-  2: 'February',
-  3: 'March',
-  4: 'April',
-  5: 'May',
-  6: 'June',
-  7: 'July',
-  8: 'August',
-  9: 'September',
-  10: 'October',
-  11: 'November',
-  12: 'December',
-});
+import {
+  getDaysInMonthAsArray,
+  getYears,
+  getMonths,
+  getCurrentYear,
+} from 'utils';
 
 const initialState = {
   name: '',
   email: '',
   password: '',
-  year: currentYear,
+  password_confirm: '',
+  year: getCurrentYear(),
   month: 1,
   day: 1,
-  days: getDaysInMonthAsArray(1, currentYear),
+  days: getDaysInMonthAsArray(1, getCurrentYear()),
 };
 
 const RegisterForm = ({ onSubmit }) => {
@@ -95,6 +79,19 @@ const RegisterForm = ({ onSubmit }) => {
             />
           </Col>
           <Col md={6}>
+            <FormInput
+              type="password"
+              name="password_confirm"
+              label="Confirm password"
+              value={values.password_confirm}
+              error={errors.password_confirm}
+              onChange={handleChange}
+            />
+          </Col>
+        </Row>
+
+        <Row form>
+          <Col md={6}>
             <Label>Date of birth</Label>
             <Row form>
               <Col md={4}>
@@ -144,10 +141,9 @@ const RegisterForm = ({ onSubmit }) => {
               </Col>
             </Row>
           </Col>
-        </Row>
 
-        <Row form>
-          <Col sm={12} md={{ size: 4, offset: 4 }}>
+          <Col md={6}>
+            <Label>&nbsp;</Label>
             <Button color="primary" type="submit" block>
               Register
             </Button>
