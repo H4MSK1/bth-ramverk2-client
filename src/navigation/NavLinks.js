@@ -1,12 +1,26 @@
-const createLink = (to, name, exact = true, props = {}) => ({
-  to,
-  name,
-  exact,
-  ...props,
-});
-
 export const NavLinks = [
-  createLink('/', 'Start'),
-  createLink('/register', 'Register'),
-  createLink('/reports/week/1', 'Kmom01'),
+  {
+    to: '/',
+    name: 'Start',
+    exact: true,
+  },
+  {
+    to: '/register',
+    name: 'Register',
+    exact: true,
+  },
+  {
+    to: '#',
+    name: 'Reports',
+    children: [
+      {
+        to: '/reports/week/1',
+        name: 'Kmom01',
+      },
+      {
+        to: '/reports/week/2',
+        name: 'Kmom02',
+      },
+    ],
+  },
 ];
