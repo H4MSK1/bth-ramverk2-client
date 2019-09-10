@@ -1,18 +1,13 @@
 import React from 'react';
 import { Container, Row, Col } from 'reactstrap';
 
-const styles = ({ padding = false }) => ({
-  style: {
-    padding: padding && padding,
-  },
-});
-
 export const DefaultContainer = ({
   keepContainer = false,
   children,
+  padding,
   ...props
 }) => (
-  <Container {...styles(props)} {...props}>
+  <Container style={{ padding }} {...props}>
     {keepContainer ? (
       children
     ) : (
