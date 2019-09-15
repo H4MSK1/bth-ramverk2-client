@@ -16,7 +16,7 @@ const Kmom01Page = () => {
   return (
     <DefaultContainer>
       <Jumbotron className="bg-secondary box-shadow">
-        <h1>kmom 01</h1>
+        <h1>Kmom 01</h1>
         <p>
           Länk till Github repot:{' '}
           <a
