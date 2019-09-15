@@ -64,6 +64,7 @@ const RegisterForm = ({ onSubmit }) => {
               type="text"
               name="name"
               label={renderCustomLabel('Name', errors.name)}
+              value={values.name}
               error={errors.name}
               onChange={handleChange}
             />
