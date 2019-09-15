@@ -1,22 +1,16 @@
 import React from 'react';
 import PageNotFound from './PageNotFound';
-import Kmom01Page from './reports/Kmom01Page';
+import Reports from './reports';
 
 const ReportPage = ({ match }) => {
-  const { kmom } = match.params;
-  const normalizedKmom = kmom.padStart(2, 0);
+  const kmom = parseInt(match.params.kmom);
 
-  switch (parseInt(kmom)) {
-    case 1:
-      return <Kmom01Page />;
-
-    default:
-      return (
-        <PageNotFound
-          body={`Rapport för kmom ${normalizedKmom} kunde inte hittas!`}
-        />
-      );
+  if (kmom in Reports) {
+    const ReportComponent = Reports[kmom];
+    return <ReportComponent />;
   }
+
+  return <PageNotFound body={`Rapport för kmom ${kmom} kunde inte hittas!`} />;
 };
 
 export default ReportPage;
