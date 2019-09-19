@@ -5,9 +5,16 @@ export const NavLinks = [
     exact: true,
   },
   {
+    to: '/login',
+    name: 'Login',
+    exact: true,
+    onlyGuest: true,
+  },
+  {
     to: '/register',
     name: 'Register',
     exact: true,
+    onlyGuest: true,
   },
   {
     to: '#',

@@ -15,48 +15,68 @@ import {
   DropdownItem,
 } from 'reactstrap';
 import { NavLinks } from './NavLinks';
+import { RenderOnlyAuth, RenderOnlyGuest } from 'api/utils';
 
 const Navbar = ({ isOpen = false }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(isOpen);
   const toggleMobileMenu = () => setIsMobileMenuOpen(state => !state);
 
   const NavItemLink = ({
-    route: { exact = false, to, name, children = [] },
+    route: {
+      to,
+      name,
+      exact = false,
+      onlyGuest = false,
+      onlyAuth = false,
+      children = [],
+    },
     ...props
-  }) => (
-    <React.Fragment {...props}>
-      {!children.length ? (
-        <NavItem>
-          <NavLink
-            tag={ReactRouterNavLink}
-            exact={exact}
-            to={to}
-            activeClassName="active"
-          >
-            {name}
-          </NavLink>
-        </NavItem>
-      ) : (
-        <UncontrolledDropdown nav inNavbar>
-          <DropdownToggle nav caret>
-            {name}
-          </DropdownToggle>
-          <DropdownMenu right>
-            {children.map((child, index) => (
-              <DropdownItem
-                key={index}
-                disabled={child.disabled}
-                tag={ReactRouterNavLink}
-                to={child.to}
-              >
-                {child.name}
-              </DropdownItem>
-            ))}
-          </DropdownMenu>
-        </UncontrolledDropdown>
-      )}
-    </React.Fragment>
-  );
+  }) => {
+    const item = (
+      <React.Fragment {...props}>
+        {!children.length ? (
+          <NavItem>
+            <NavLink
+              tag={ReactRouterNavLink}
+              exact={exact}
+              to={to}
+              activeClassName="active"
+            >
+              {name}
+            </NavLink>
+          </NavItem>
+        ) : (
+          <UncontrolledDropdown nav inNavbar>
+            <DropdownToggle nav caret>
+              {name}
+            </DropdownToggle>
+            <DropdownMenu right>
+              {children.map((child, index) => (
+                <DropdownItem
+                  key={index}
+                  disabled={child.disabled}
+                  tag={ReactRouterNavLink}
+                  to={child.to}
+                >
+                  {child.name}
+                </DropdownItem>
+              ))}
+            </DropdownMenu>
+          </UncontrolledDropdown>
+        )}
+      </React.Fragment>
+    );
+
+    if (onlyAuth) {
+      return <RenderOnlyAuth>{item}</RenderOnlyAuth>;
+    }
+
+    if (onlyGuest) {
+      return <RenderOnlyGuest>{item}</RenderOnlyGuest>;
+    }
+
+    return item;
+  };
 
   return (
     <BaseNavbar dark expand="md" className="bg-primary">
