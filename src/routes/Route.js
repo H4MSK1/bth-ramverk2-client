@@ -1,6 +1,7 @@
 import React from 'react';
-import { Route as BaseRoute } from 'react-router-dom';
+import { Route as BaseRoute, Redirect } from 'react-router-dom';
 import { AppLayout } from 'layouts/AppLayout';
+import { onlyAuth, onlyGuest } from 'api/utils';
 
 export const AppRoute = ({ component: Component, ...rest }) => (
   <BaseRoute
@@ -12,3 +13,9 @@ export const AppRoute = ({ component: Component, ...rest }) => (
     )}
   />
 );
+
+export const AuthRoute = ({ ...params }) =>
+  onlyAuth(() => <AppRoute {...params} />, <Redirect to="/login" />);
+
+export const GuestRoute = ({ ...params }) =>
+  onlyGuest(() => <AppRoute {...params} />, <Redirect to="/" />);
