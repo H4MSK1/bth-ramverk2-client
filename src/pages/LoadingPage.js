@@ -1,10 +1,6 @@
 import React from 'react';
-import { DefaultContainer } from 'layouts/DefaultContainer';
+import { AppLayout } from 'layouts/AppLayout';
 
-const LoadingPage = () => (
-  <DefaultContainer>
-    <h2 className="display-5">Loading...</h2>
-  </DefaultContainer>
-);
+const LoadingPage = () => <AppLayout />;
 
 export default LoadingPage;

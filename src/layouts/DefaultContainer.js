@@ -5,6 +5,7 @@ export const DefaultContainer = ({
   keepContainer = false,
   children,
   padding,
+  column = {},
   ...props
 }) => (
   <Container style={{ padding }} {...props}>
@@ -12,7 +13,7 @@ export const DefaultContainer = ({
       children
     ) : (
       <Row>
-        <Col>{children}</Col>
+        <Col {...column}>{children}</Col>
       </Row>
     )}
   </Container>
