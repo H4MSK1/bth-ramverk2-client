@@ -2,7 +2,7 @@ import React from 'react';
 import { Col, Row, Button, Form, Label } from 'reactstrap';
 import FormInput from 'components/FormInput';
 import useForm from 'hooks/useForm';
-import RegisterFormValidator from './RegisterFormValidator';
+import ValidatorRules from './ValidatorRules';
 import {
   getDaysInMonthAsArray,
   getYears,
@@ -22,14 +22,13 @@ const initialState = {
   days: getDaysInMonthAsArray(1, getCurrentYear()),
 };
 
-const RegisterForm = ({ onSubmit }) => {
+const FormComponent = ({ onSubmit }) => {
   const { values, setValues, errors, handleChange, handleSubmit } = useForm(
     initialState,
     () => {
       onSubmit(values);
-      setValues(initialState);
     },
-    RegisterFormValidator,
+    ValidatorRules,
   );
 
   React.useEffect(() => {
@@ -171,4 +170,4 @@ const RegisterForm = ({ onSubmit }) => {
   );
 };
 
-export default RegisterForm;
+export default FormComponent;

@@ -1,6 +1,6 @@
-import Validator from './Validator';
+import Validator from '../Validator';
 
-export default function RegisterFormValidator(values) {
+export default function ValidatorRules(values) {
   const { errors } = Validator(
     values,
     {

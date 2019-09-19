@@ -1,9 +1,10 @@
 import React from 'react';
 import { Jumbotron } from 'reactstrap';
 import { DefaultContainer } from 'layouts/DefaultContainer';
-import RegisterForm from 'forms/RegisterForm';
+import { RegisterForm } from 'forms/register';
+import ApiClient from 'api';
 
-const RegisterPage = () => {
+const RegisterPage = ({ history }) => {
   const onSubmit = formValues => {
     const { name, email, password, year, month, day } = formValues;
     const payload = {
@@ -13,7 +14,11 @@ const RegisterPage = () => {
       birthDate: `${year}-${month}-${day}`,
     };
 
-    console.log('TCL: RegisterPage -> payload', payload);
+    ApiClient.post('/register', payload)
+      .then(() => {
+        history.push('/login');
+      })
+      .catch(console.error);
   };
 
   return (
