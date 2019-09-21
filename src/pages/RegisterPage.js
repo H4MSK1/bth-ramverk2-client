@@ -2,7 +2,7 @@ import React from 'react';
 import { Jumbotron } from 'reactstrap';
 import { DefaultContainer } from 'layouts/DefaultContainer';
 import { RegisterForm } from 'forms/register';
-import ApiClient from 'api';
+import ApiClient from 'api/client';
 
 const RegisterPage = ({ history }) => {
   const onSubmit = formValues => {

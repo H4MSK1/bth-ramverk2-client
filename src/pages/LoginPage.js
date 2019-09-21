@@ -2,7 +2,7 @@ import React from 'react';
 import { Jumbotron } from 'reactstrap';
 import { DefaultContainer } from 'layouts/DefaultContainer';
 import { LoginForm } from 'forms/login';
-import ApiClient from 'api';
+import ApiClient from 'api/client';
 import TokenService from 'api/TokenService';
 
 const LoginPage = ({ history }) => {
