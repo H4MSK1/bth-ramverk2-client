@@ -9,7 +9,6 @@ import {
   getMonths,
   getCurrentYear,
 } from 'utils';
-import emilWut from 'static/emilWut.png';
 
 const initialState = {
   name: '',
@@ -41,19 +40,6 @@ const FormComponent = ({ onSubmit }) => {
     setValues(state => ({ ...state, ...newValues }));
   }, [values.year, values.month, values.day]);
 
-  const renderCustomLabel = (label, hasError) => (
-    <>
-      {label}
-      {hasError && (
-        <img
-          alt=""
-          src={emilWut}
-          style={{ position: 'absolute', top: 32, right: 6, height: 38 }}
-        />
-      )}
-    </>
-  );
-
   return (
     <React.Fragment>
       <Form onSubmit={handleSubmit}>
@@ -62,7 +48,7 @@ const FormComponent = ({ onSubmit }) => {
             <FormInput
               type="text"
               name="name"
-              label={renderCustomLabel('Name', errors.name)}
+              label="Name"
               value={values.name}
               error={errors.name}
               onChange={handleChange}
@@ -72,7 +58,7 @@ const FormComponent = ({ onSubmit }) => {
             <FormInput
               type="email"
               name="email"
-              label={renderCustomLabel('Email', errors.email)}
+              label="Email"
               value={values.email}
               error={errors.email}
               onChange={handleChange}
@@ -85,7 +71,7 @@ const FormComponent = ({ onSubmit }) => {
             <FormInput
               type="password"
               name="password"
-              label={renderCustomLabel('Password', errors.password)}
+              label="Password"
               value={values.password}
               error={errors.password}
               onChange={handleChange}
@@ -95,10 +81,7 @@ const FormComponent = ({ onSubmit }) => {
             <FormInput
               type="password"
               name="password_confirm"
-              label={renderCustomLabel(
-                'Confirm password',
-                errors.password_confirm,
-              )}
+              label="Confirm password"
               value={values.password_confirm}
               error={errors.password_confirm}
               onChange={handleChange}
