@@ -1,5 +1,5 @@
 import React from 'react';
-import { FormGroup, Label, Input, FormFeedback } from 'reactstrap';
+import { FormGroup, Label, Input, FormFeedback, FormText } from 'reactstrap';
 
 const FormInput = ({
   children,
@@ -7,6 +7,7 @@ const FormInput = ({
   label,
   type,
   error,
+  helpText,
   onChange = () => {},
   ...props
 }) => (
@@ -23,6 +24,8 @@ const FormInput = ({
     >
       {children}
     </Input>
+
+    {helpText && <FormText color="muted">{helpText}</FormText>}
 
     {error && <FormFeedback>{error || 'This field is invalid.'}</FormFeedback>}
   </FormGroup>
