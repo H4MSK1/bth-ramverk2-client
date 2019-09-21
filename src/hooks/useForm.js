@@ -1,6 +1,11 @@
 import React from 'react';
 
-const useForm = (initialValues = {}, callback, validate) => {
+const useForm = (
+  initialValues = {},
+  callback,
+  validate,
+  preFilledValues = {},
+) => {
   const [values, setValues] = React.useState(initialValues);
   const [errors, setErrors] = React.useState({});
   const [isSubmitting, setIsSubmitting] = React.useState(false);
@@ -11,6 +16,17 @@ const useForm = (initialValues = {}, callback, validate) => {
     }
     setIsSubmitting(false);
   }, [callback, errors, isSubmitting]);
+
+  React.useEffect(() => {
+    if (Object.keys(preFilledValues).length === 0) {
+      return setValues(initialValues);
+    }
+
+    setValues(state => ({
+      ...state,
+      ...preFilledValues,
+    }));
+  }, [preFilledValues]);
 
   const handleSubmit = event => {
     event && event.preventDefault();
@@ -30,7 +46,13 @@ const useForm = (initialValues = {}, callback, validate) => {
     }));
   };
 
-  return { values, setValues, errors, handleChange, handleSubmit };
+  return {
+    values,
+    setValues,
+    errors,
+    handleChange,
+    handleSubmit,
+  };
 };
 
 export default useForm;
