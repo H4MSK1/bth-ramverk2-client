@@ -16,6 +16,12 @@ import {
 } from 'reactstrap';
 import { NavLinks } from './NavLinks';
 import { RenderOnlyAuth, RenderOnlyGuest } from 'api/utils';
+import TokenService from 'api/TokenService';
+
+const handleLogoutClick = () => {
+  TokenService.removeTokens();
+  window.location.reload();
+};
 
 const Navbar = ({ isOpen = false }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(isOpen);
@@ -29,6 +35,7 @@ const Navbar = ({ isOpen = false }) => {
       onlyGuest = false,
       onlyAuth = false,
       children = [],
+      onClick = () => {},
     },
     ...props
   }) => {
@@ -41,6 +48,7 @@ const Navbar = ({ isOpen = false }) => {
               exact={exact}
               to={to}
               activeClassName="active"
+              onClick={onClick}
             >
               {name}
             </NavLink>
@@ -90,6 +98,14 @@ const Navbar = ({ isOpen = false }) => {
             {NavLinks.map((item, index) => (
               <NavItemLink route={item} key={index} />
             ))}
+
+            <RenderOnlyAuth>
+              <NavItem>
+                <NavLink href="#" onClick={handleLogoutClick}>
+                  <b>SIGN OFF</b>
+                </NavLink>
+              </NavItem>
+            </RenderOnlyAuth>
           </Nav>
         </Collapse>
       </Container>

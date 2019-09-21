@@ -17,6 +17,12 @@ export const NavLinks = [
     onlyGuest: true,
   },
   {
+    to: '/reports/create',
+    name: 'Create new report',
+    exact: true,
+    onlyAuth: true,
+  },
+  {
     to: '#',
     name: 'Reports',
     children: [
@@ -31,7 +37,6 @@ export const NavLinks = [
       {
         to: '/reports/week/3',
         name: 'Kmom03',
-        disabled: true,
       },
       {
         to: '/reports/week/4',
@@ -46,11 +51,6 @@ export const NavLinks = [
       {
         to: '/reports/week/6',
         name: 'Kmom06',
-        disabled: true,
-      },
-      {
-        to: '/reports/week/10',
-        name: 'Kmom10',
         disabled: true,
       },
     ],
