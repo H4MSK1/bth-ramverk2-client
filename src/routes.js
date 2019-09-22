@@ -19,8 +19,6 @@ export default (
 
       <GuestRoute path="/register" component={RegisterPage} />
 
-      <AuthRoute path="/me" component={null} />
-
       <AppRoute path="/reports/week/:week" component={ReportPage} />
 
       <AuthRoute path="/reports/create" component={ReportFormPage} />

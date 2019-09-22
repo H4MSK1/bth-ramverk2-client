@@ -14,8 +14,8 @@ export const AppRoute = ({ component: Component, ...rest }) => (
   />
 );
 
-export const AuthRoute = ({ ...params }) =>
-  onlyAuth(() => <AppRoute {...params} />, <Redirect to="/login" />);
+export const AuthRoute = ({ ...props }) =>
+  onlyAuth(() => <AppRoute {...props} />, <Redirect to="/login" />);
 
-export const GuestRoute = ({ ...params }) =>
-  onlyGuest(() => <AppRoute {...params} />, <Redirect to="/" />);
+export const GuestRoute = ({ ...props }) =>
+  onlyGuest(() => <AppRoute {...props} />, <Redirect to="/" />);

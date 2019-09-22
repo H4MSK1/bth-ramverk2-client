@@ -28,6 +28,7 @@ ApiClient.interceptors.response.use(undefined, async error => {
     error.config &&
     !error.config.__isRetryRequest
   ) {
+    // Token has expired and is invalid
     TokenService.removeTokens();
     return window.location.reload();
   }
