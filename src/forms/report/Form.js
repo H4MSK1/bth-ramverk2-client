@@ -20,6 +20,7 @@ const FormComponent = ({ onSubmit, preFilledValues = {} }) => {
     ValidatorRules,
     preFilledValues,
   );
+  const isWeekSelectionDisabled = Object.keys(preFilledValues).length > 0;
 
   return (
     <React.Fragment>
@@ -48,6 +49,7 @@ const FormComponent = ({ onSubmit, preFilledValues = {} }) => {
               value={values.week}
               error={errors.week}
               onChange={handleChange}
+              disabled={isWeekSelectionDisabled}
               helpText="Which kmom does this report apply to?"
             >
               {weeks.map((week, index) => (
