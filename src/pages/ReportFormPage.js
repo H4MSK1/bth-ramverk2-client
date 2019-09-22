@@ -2,6 +2,7 @@ import React from 'react';
 import { Jumbotron } from 'reactstrap';
 import { DefaultContainer } from 'layouts/DefaultContainer';
 import { ReportForm } from 'forms/report';
+import { ActionButtons } from './ReportPage';
 import ApiClient from 'api/client';
 
 const ReportFormPage = ({ history, match }) => {
@@ -14,7 +15,7 @@ const ReportFormPage = ({ history, match }) => {
     if (isEditing) {
       ApiClient.get(`/reports/week/${id}`)
         .then(res => {
-          setReportData(res.data);
+          setReportData(res.data.data);
         })
         .catch(console.error);
     } else {
@@ -27,11 +28,11 @@ const ReportFormPage = ({ history, match }) => {
     const payload = { body, week };
 
     try {
-      const res = await ApiClient.post(
-        `/reports/${isEditing ? 'update' : ''}`,
+      const res = await ApiClient[isEditing ? 'put' : 'post'](
+        '/reports',
         payload,
       );
-      history.push(`/reports/week/${res.data.week}`);
+      history.push(`/reports/week/${res.data.data.week}`);
     } catch (error) {
       console.error(error);
     }
@@ -48,6 +49,11 @@ const ReportFormPage = ({ history, match }) => {
         <h2>
           {isEditing ? `Update report for kmom (${id})` : 'Create a report'}
         </h2>
+
+        {isEditing && (
+          <ActionButtons reportId={id} history={history} disableEditOption />
+        )}
+
         <ReportForm onSubmit={onSubmit} preFilledValues={reportData} />
       </Jumbotron>
     </DefaultContainer>
