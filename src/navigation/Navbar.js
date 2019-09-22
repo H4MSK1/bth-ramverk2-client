@@ -62,7 +62,6 @@ const Navbar = ({ isOpen = false }) => {
               {children.map((child, index) => (
                 <DropdownItem
                   key={index}
-                  disabled={child.disabled}
                   tag={ReactRouterNavLink}
                   to={child.to}
                 >

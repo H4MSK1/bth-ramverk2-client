@@ -41,17 +41,14 @@ export const NavLinks = [
       {
         to: '/reports/week/4',
         name: 'Kmom04',
-        disabled: true,
       },
       {
         to: '/reports/week/5',
         name: 'Kmom05',
-        disabled: true,
       },
       {
         to: '/reports/week/6',
         name: 'Kmom06',
-        disabled: true,
       },
     ],
   },
