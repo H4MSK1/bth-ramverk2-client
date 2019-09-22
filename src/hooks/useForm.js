@@ -4,7 +4,7 @@ const useForm = (
   initialValues = {},
   callback,
   validate,
-  preFilledValues = {},
+  preFilledValues = null,
 ) => {
   const [values, setValues] = React.useState(initialValues);
   const [errors, setErrors] = React.useState({});
@@ -18,6 +18,10 @@ const useForm = (
   }, [callback, errors, isSubmitting]);
 
   React.useEffect(() => {
+    if (preFilledValues === null) {
+      return;
+    }
+
     if (Object.keys(preFilledValues).length === 0) {
       return setValues(initialValues);
     }
