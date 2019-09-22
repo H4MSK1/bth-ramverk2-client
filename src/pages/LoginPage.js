@@ -12,7 +12,7 @@ const LoginPage = ({ history }) => {
 
     ApiClient.post('/login', payload)
       .then(res => {
-        const { access_token } = res.data;
+        const { access_token } = res.data.data;
         TokenService.setAccessToken(access_token);
         history.push('/');
       })

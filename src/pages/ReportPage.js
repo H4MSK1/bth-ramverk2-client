@@ -12,7 +12,11 @@ import { RenderOnlyAuth } from 'api/utils';
 import PageNotFound from './PageNotFound';
 import ApiClient from 'api/client';
 
-const ActionButtons = ({ history, reportId }) => {
+export const ActionButtons = ({
+  history,
+  reportId,
+  disableEditOption = false,
+}) => {
   const [isOpen, setIsOpen] = React.useState(false);
   const toggleOpenState = () => setIsOpen(state => !state);
   const handleDelete = async () => {
@@ -25,24 +29,28 @@ const ActionButtons = ({ history, reportId }) => {
   };
 
   return (
-    <ButtonDropdown isOpen={isOpen} toggle={toggleOpenState}>
-      <DropdownToggle color="primary" caret>
-        Manage report
-      </DropdownToggle>
-      <DropdownMenu>
-        <DropdownItem header>Actions</DropdownItem>
-        <DropdownItem
-          onClick={() => history.push(`/reports/update/${reportId}`)}
-        >
-          Edit
-        </DropdownItem>
-        <DropdownItem onClick={handleDelete}>Delete</DropdownItem>
-      </DropdownMenu>
-    </ButtonDropdown>
+    <RenderOnlyAuth>
+      <ButtonDropdown isOpen={isOpen} toggle={toggleOpenState}>
+        <DropdownToggle color="primary" caret>
+          Manage report
+        </DropdownToggle>
+        <DropdownMenu>
+          <DropdownItem header>Actions</DropdownItem>
+          {!disableEditOption && (
+            <DropdownItem
+              onClick={() => history.push(`/reports/update/${reportId}`)}
+            >
+              Edit
+            </DropdownItem>
+          )}
+          <DropdownItem onClick={handleDelete}>Delete</DropdownItem>
+        </DropdownMenu>
+      </ButtonDropdown>
+    </RenderOnlyAuth>
   );
 };
 
-const ReportPage = ({ match, ...props }) => {
+const ReportPage = ({ history, match }) => {
   const [reportData, setReportData] = React.useState({});
   const [hasError, setHasError] = React.useState(false);
   const id = match.params.week && parseInt(match.params.week);
@@ -50,7 +58,7 @@ const ReportPage = ({ match, ...props }) => {
   const fetchData = async () => {
     try {
       const res = await ApiClient.get(`/reports/week/${id}`);
-      setReportData(res.data);
+      setReportData(res.data.data);
       setHasError(false);
     } catch (error) {
       console.error(error);
@@ -71,9 +79,7 @@ const ReportPage = ({ match, ...props }) => {
       <Jumbotron className="bg-secondary box-shadow">
         <h1>Kmom {String(id).padStart(2, 0)}</h1>
 
-        <RenderOnlyAuth>
-          <ActionButtons reportId={id} {...props} />
-        </RenderOnlyAuth>
+        <ActionButtons reportId={id} history={history} />
 
         <hr />
         <p>
