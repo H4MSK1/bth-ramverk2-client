@@ -1,4 +1,6 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Badges
+[![Build Status](https://travis-ci.org/H4MSK1/bth-ramverk2-client.svg?branch=master)](https://travis-ci.org/H4MSK1/bth-ramverk2-client) [![Build Status](https://scrutinizer-ci.com/g/H4MSK1/bth-ramverk2-client/badges/build.png?b=master)](https://scrutinizer-ci.com/g/H4MSK1/bth-ramverk2-client/build-status/master) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/H4MSK1/bth-ramverk2-client/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/H4MSK1/bth-ramverk2-client/?branch=master) [![Code Coverage](https://scrutinizer-ci.com/g/H4MSK1/bth-ramverk2-client/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/H4MSK1/bth-ramverk2-client/?branch=master)
+
 
 ## Installation
 
