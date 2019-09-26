@@ -5,7 +5,7 @@ node_modules
 
 # testing
 coverage
-
+src/components/__snapshots__
 # production
 build
 
