@@ -1,4 +1,7 @@
+/** global: jest */
+
 import TokenService from './TokenService';
+
 jest.mock('./TokenService');
 
 describe('api/TokenService', () => {
