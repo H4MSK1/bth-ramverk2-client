@@ -2,7 +2,7 @@ import React from 'react';
 import { mount } from 'enzyme';
 import { FormGroup, Label, Input } from 'reactstrap';
 
-import FormInput from './FormInput';
+import FormInput from 'components/FormInput';
 
 describe('<FormInput />', () => {
   let wrapper;
@@ -23,7 +23,7 @@ describe('<FormInput />', () => {
   });
 
   it('renders without crashing', () => {
-    expect(wrapper).toMatchSnapshot();
+    expect(wrapper.length).toBe(1);
   });
 
   it('renders one <FormGroup />', () => {

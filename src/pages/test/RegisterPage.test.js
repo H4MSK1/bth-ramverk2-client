@@ -1,0 +1,24 @@
+import React from 'react';
+import { mount } from 'enzyme';
+import { DefaultContainer } from 'layouts/DefaultContainer';
+
+import RegisterPage from 'pages/RegisterPage';
+
+describe('<RegisterPage />', () => {
+  let wrapper;
+  beforeEach(() => {
+    wrapper = mount(<RegisterPage />);
+  });
+
+  afterEach(() => {
+    wrapper.unmount();
+  });
+
+  it('renders without crashing', () => {
+    expect(wrapper.length).toBe(1);
+  });
+
+  it('renders one <DefaultContainer />', () => {
+    expect(wrapper.find(DefaultContainer).length).toBe(1);
+  });
+});
