@@ -5,6 +5,7 @@ import { DefaultContainer } from 'layouts/DefaultContainer';
 import { RenderOnlyAuth, getCurrentUser, useCurrentUser } from 'api/utils';
 import useSocketEvents, { EVENTS } from './events';
 import { getMonths } from 'utils';
+import NicknameDialog from './dialog';
 
 const formatChatMessageDate = date => {
   const monthName = getMonths()[date.getMonth()];
@@ -56,7 +57,6 @@ const ChatMessageForm = ({ handleSubmit }) => {
       <InputGroup>
         <Input
           type="text"
-          name="message"
           placeholder="Type your message here"
           value={value}
           onChange={onChange}
@@ -65,7 +65,7 @@ const ChatMessageForm = ({ handleSubmit }) => {
         />
         <InputGroupAddon addonType="append">
           <Button color="secondary" onClick={onSubmit}>
-            <span style={{ padding: '0 15' }}>Send</span>
+            Send
           </Button>
         </InputGroupAddon>
       </InputGroup>
@@ -111,6 +111,9 @@ const Chat = () => {
   const [usersCount, setUsersCount] = React.useState(0);
   const [messages, setMessages] = useImmer([]);
   const messageWrapperRef = React.useRef(null);
+  const [nickname, setNickname] = React.useState('');
+
+  const handleNicknameSubmit = nickname => setNickname(nickname);
 
   const scrollIntoMessagesView = () => {
     if (messageWrapperRef.current) {
@@ -118,6 +121,7 @@ const Chat = () => {
         messageWrapperRef.current.scrollHeight;
     }
   };
+
   const scrollIntoMessagesViewWithDelay = (delay = 50) =>
     setTimeout(scrollIntoMessagesView, delay);
 
@@ -162,15 +166,23 @@ const Chat = () => {
   };
 
   return (
-    <DefaultContainer>
-      Users online: {usersCount}
-      <div className="messages-wrapper" ref={messageWrapperRef}>
-        <MessagesArea messages={messages} />
-      </div>
-      <RenderOnlyAuth>
-        <ChatMessageForm handleSubmit={handleMessageSend} />
-      </RenderOnlyAuth>
-    </DefaultContainer>
+    <React.Fragment>
+      {!nickname && <NicknameDialog handleSubmit={handleNicknameSubmit} open />}
+      <DefaultContainer
+        column={{
+          xs: 12,
+          md: { size: 8, offset: 2 },
+        }}
+      >
+        Users online: {usersCount}
+        <div className="messages-wrapper" ref={messageWrapperRef}>
+          <MessagesArea messages={messages} />
+        </div>
+        <RenderOnlyAuth>
+          <ChatMessageForm handleSubmit={handleMessageSend} />
+        </RenderOnlyAuth>
+      </DefaultContainer>
+    </React.Fragment>
   );
 };
 
