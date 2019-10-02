@@ -1,5 +1,6 @@
 import TokenService from './TokenService';
 import jwt_decode from 'jwt-decode';
+import { client } from './client';
 
 export const RenderOnlyAuth = ({ children }) => onlyAuth(() => children);
 export const RenderOnlyGuest = ({ children }) => onlyGuest(() => children);
@@ -25,11 +26,6 @@ export const getCurrentUser = () => {
       _currentUser = jwt_decode(TokenService.getAccessToken());
     }
 
-    // if (_currentUser.exp < new Date().getTime()) {
-    //   TokenService.removeTokens();
-    //   return window.location.reload();
-    // }
-
     return _currentUser;
   } catch {
     return {};
@@ -38,3 +34,15 @@ export const getCurrentUser = () => {
 
 export const useCurrentUser = (id, resolved, defaultValue = null) =>
   id === getCurrentUser().userId ? resolved : defaultValue;
+
+export const checkTokenExpiration = () =>
+  onlyAuth(() => {
+    client
+      .post('/verifyToken', {
+        token: TokenService.getAccessToken(),
+      })
+      .catch(() => {
+        TokenService.removeTokens();
+        window.location.reload();
+      });
+  });

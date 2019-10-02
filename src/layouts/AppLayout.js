@@ -1,6 +1,7 @@
 import React from 'react';
 import Navbar from 'navigation/Navbar';
 import { DefaultContainer } from './DefaultContainer';
+import { checkTokenExpiration } from 'api/utils';
 
 const Header = () => (
   <header className="navbar-wrapper">
@@ -24,12 +25,18 @@ const Footer = () => (
   </footer>
 );
 
-export const AppLayout = ({ children }) => (
-  <div className="app">
-    <Header />
+export const AppLayout = ({ children }) => {
+  React.useEffect(() => {
+    checkTokenExpiration();
+  });
 
-    <main className="main">{children}</main>
+  return (
+    <div className="app">
+      <Header />
 
-    <Footer />
-  </div>
-);
+      <main className="main">{children}</main>
+
+      <Footer />
+    </div>
+  );
+};

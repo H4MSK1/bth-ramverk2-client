@@ -1,6 +1,11 @@
 import axios from 'axios';
 import TokenService from './TokenService';
 
+export const client = axios.create({
+  baseURL: process.env.REACT_APP_BACKEND_URL,
+  headers: { 'Content-Type': 'application/json; charset=utf-8' },
+});
+
 const ApiClient = axios.create({
   baseURL: process.env.REACT_APP_BACKEND_URL,
   headers: { 'Content-Type': 'application/json; charset=utf-8' },
