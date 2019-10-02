@@ -70,7 +70,7 @@ const ReportPage = ({ history, match }) => {
     fetchData();
   }, [id]);
 
-  if (hasError) {
+  if (hasError || !reportData) {
     return <PageNotFound body={`Report #${id} can't be found!`} />;
   }
 
