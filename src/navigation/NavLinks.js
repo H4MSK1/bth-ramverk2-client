@@ -5,6 +5,11 @@ export const NavLinks = [
     exact: true,
   },
   {
+    to: '/chat',
+    name: 'Chat',
+    exact: true,
+  },
+  {
     to: '/login',
     name: 'Login',
     exact: true,
