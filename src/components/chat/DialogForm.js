@@ -1,5 +1,6 @@
 import React from 'react';
 import {
+  Form,
   Button,
   Modal,
   ModalHeader,
@@ -9,7 +10,7 @@ import {
   InputGroupAddon,
 } from 'reactstrap';
 
-const Dialog = ({ handleSubmit, open = false }) => {
+const DialogForm = ({ handleSubmit, open = false, ...props }) => {
   const [value, setValue] = React.useState('');
   const [isOpen, setIsOpen] = React.useState(open);
 
@@ -27,14 +28,14 @@ const Dialog = ({ handleSubmit, open = false }) => {
   };
 
   return (
-    <React.Fragment>
-      <Modal isOpen={isOpen}>
-        <ModalHeader>Choose a nickname to start chatting</ModalHeader>
-        <ModalBody>
+    <Modal isOpen={isOpen} {...props} centered>
+      <ModalHeader>Choose a nickname to start chatting</ModalHeader>
+      <ModalBody>
+        <Form onSubmit={onSubmit}>
           <InputGroup>
             <Input
               type="text"
-              placeholder="Choose a nickname"
+              placeholder="Enter a nickname"
               value={value}
               onChange={onChange}
               style={{ borderRadius: 0 }}
@@ -42,17 +43,17 @@ const Dialog = ({ handleSubmit, open = false }) => {
             <InputGroupAddon addonType="append">
               <Button
                 color="primary"
-                onClick={onSubmit}
+                type="submit"
                 disabled={!value.trim().length}
               >
                 Start chatting!
               </Button>
             </InputGroupAddon>
           </InputGroup>
-        </ModalBody>
-      </Modal>
-    </React.Fragment>
+        </Form>
+      </ModalBody>
+    </Modal>
   );
 };
 
-export default Dialog;
+export default DialogForm;
