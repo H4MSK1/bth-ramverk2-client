@@ -19,7 +19,7 @@ export const onlyGuest = (next, fallback = null) => {
   return next();
 };
 
-let _currentUser = {};
+let _currentUser = null;
 export const getCurrentUser = () => {
   try {
     if (!Object.keys(_currentUser).length) {
@@ -28,7 +28,7 @@ export const getCurrentUser = () => {
 
     return _currentUser;
   } catch {
-    return {};
+    return null;
   }
 };
 
