@@ -30,3 +30,18 @@ export const getMonths = () => ({
   11: 'November',
   12: 'December',
 });
+
+export const formatChatMessageDate = date => {
+  const monthName = getMonths()[date.getMonth()];
+
+  return `${date
+    .getDate()
+    .toString()
+    .padStart(2, '0')} ${monthName.substr(0, 3)} ${date
+    .getHours()
+    .toString()
+    .padStart(2, '0')}:${date
+    .getMinutes()
+    .toString()
+    .padStart(2, '0')}`;
+};
