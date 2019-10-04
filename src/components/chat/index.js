@@ -5,37 +5,24 @@ import { DefaultContainer } from 'layouts/DefaultContainer';
 import { MessagesArea } from './Messages';
 import ChatMessageForm from './ChatMessageForm';
 import DialogForm from './DialogForm';
-
-const composeMessageSchema = (message, nickname) => ({
-  message,
-  nickname,
-  timestamp: Date.now(),
-});
+import uuid from 'uuid';
 
 const Chat = () => {
   const [messages, setMessages] = useImmer([]);
   const messageWrapperRef = React.useRef(null);
   const [nickname, setNickname] = React.useState('');
+  const [userId] = React.useState(uuid());
   const { socket, isSocketReady } = useSocketEvents();
 
+  const handleNicknameSubmit = nickname => setNickname(nickname);
+  const handleMessageSend = message => {
+    socket.emit(EVENTS.NEW_MESSAGE, { message });
+  };
   const scrollIntoMessagesView = () => {
     if (messageWrapperRef.current) {
       messageWrapperRef.current.scrollTop =
         messageWrapperRef.current.scrollHeight;
     }
-  };
-
-  const scrollIntoMessagesViewWithDelay = (delay = 50) =>
-    setTimeout(scrollIntoMessagesView, delay);
-
-  const handleNicknameSubmit = nickname => setNickname(nickname);
-
-  const handleMessageSend = message => {
-    socket.emit(EVENTS.NEW_MESSAGE, { message, nickname });
-    setMessages(draft => {
-      draft.push(composeMessageSchema(message, nickname));
-    });
-    scrollIntoMessagesViewWithDelay();
   };
 
   React.useEffect(() => {
@@ -52,7 +39,7 @@ const Chat = () => {
 
     socket.on(EVENTS.CHAT_HISTORY, messages => {
       setMessages(() => messages);
-      scrollIntoMessagesViewWithDelay();
+      setTimeout(scrollIntoMessagesView, 50);
     });
 
     socket.emit(EVENTS.CHAT_HISTORY);
@@ -60,7 +47,7 @@ const Chat = () => {
 
   React.useEffect(() => {
     if (nickname.length && isSocketReady) {
-      socket.emit(EVENTS.JOIN, { nickname });
+      socket.emit(EVENTS.JOIN, { nickname, userId });
     }
   }, [isSocketReady, nickname]);
 
@@ -68,7 +55,7 @@ const Chat = () => {
     <React.Fragment>
       <DefaultContainer>
         <div className="messages-wrapper" ref={messageWrapperRef}>
-          <MessagesArea messages={messages} />
+          <MessagesArea messages={messages} currentUserId={userId} />
         </div>
 
         {!nickname ? (

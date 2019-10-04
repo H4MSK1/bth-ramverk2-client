@@ -1,17 +1,26 @@
 import React from 'react';
 import { formatChatMessageDate } from 'utils';
 
-export const MessagesArea = ({ messages }) =>
+export const MessagesArea = ({ messages, ...props }) =>
   messages.map((message, index) => (
-    <MessageItem message={message} key={index} />
+    <MessageItem message={message} key={index} {...props} />
   ));
 
 export const MessageItem = ({
-  message: { nickname, timestamp, message: text, isStatusMessage = false },
+  message: {
+    user: { nickname, userId },
+    timestamp,
+    message: text,
+    isStatusMessage = false,
+  },
+  currentUserId,
   ...props
 }) => (
   <div className="message-container" {...props}>
-    <div className={`message-item ${isStatusMessage && 'status-message'}`}>
+    <div
+      className={`message-item ${(isStatusMessage && 'status-message') ||
+        (userId === currentUserId && 'align-self-end')}`}
+    >
       <p>
         {!isStatusMessage && <span className="sender">{nickname}</span>}
         {text}
