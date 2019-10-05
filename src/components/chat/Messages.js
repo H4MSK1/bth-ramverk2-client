@@ -8,7 +8,8 @@ export const MessagesArea = ({ messages, ...props }) =>
 
 export const MessageItem = ({
   message: {
-    user: { nickname, userId },
+    nickname,
+    userId,
     timestamp,
     message: text,
     isStatusMessage = false,
