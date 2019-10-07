@@ -9,6 +9,7 @@ const PageNotFound = lazy(() => import('pages/PageNotFound'));
 const RegisterPage = lazy(() => import('pages/RegisterPage'));
 const LoginPage = lazy(() => import('pages/LoginPage'));
 const ReportFormPage = lazy(() => import('pages/ReportFormPage'));
+const ChatPage = lazy(() => import('pages/ChatPage'));
 
 export default (
   <Suspense fallback={<LoadingPage />}>
@@ -24,6 +25,8 @@ export default (
       <AuthRoute path="/reports/create" component={ReportFormPage} />
 
       <AuthRoute path="/reports/update/:week" component={ReportFormPage} />
+
+      <AppRoute path="/chat" component={ChatPage} />
 
       <AppRoute path="*" component={PageNotFound} />
     </Switch>

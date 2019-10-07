@@ -4,7 +4,12 @@ body {
 }
 
 .navbar-wrapper {
+  height: $navbar-height;
   margin-bottom: $navbar-height / 2;
+
+  & > nav {
+    z-index: 5000;
+  }
 }
 
 .app {
